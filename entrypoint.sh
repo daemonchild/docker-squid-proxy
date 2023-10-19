@@ -31,7 +31,7 @@ fi
 
 # Start Squid
 if [[ -z ${1} ]]; then
-  echo "Starting squid..."
+  echo "[ENTRYPOINT] Starting Proxy Server"
   exec $(which squid) -f /etc/squid/squid.conf -NYCd 1 ${EXTRA_ARGS}
 else
   exec "$@"

@@ -7,15 +7,18 @@ FROM ubuntu:16.04
 #  \__,_|\__,_|\___|_| |_| |_|\___/|_| |_|\___|_| |_|_|_|\__,_|
 #
 
-#  	Title:		Dockerfile - Bounce Proxy
+#  	Title:		Dockerfile - Web Proxy
+#   Note:       Default config does NOT allow RFC1918 targets
+#               Change conf/squid.conf
 #
 
 ENV SQUID_LOG_DIR=/var/log/squid \
     SQUID_USER=proxy
 
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y squid \
- && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y squid && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 COPY conf/squid.conf /etc/squid/squid.conf

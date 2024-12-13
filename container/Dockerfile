@@ -11,6 +11,7 @@ FROM ubuntu:16.04
 #   Note:       Default config does NOT allow RFC1918 targets
 #               Change conf/squid.conf
 #
+EXPOSE 3128/tcp
 
 ENV SQUID_LOG_DIR=/var/log/squid \
     SQUID_USER=proxy
@@ -20,9 +21,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY entrypoint.sh /sbin/entrypoint.sh
 COPY conf/squid.conf /etc/squid/squid.conf
-RUN chmod 755 /sbin/entrypoint.sh
+COPY --chmod=0755 entrypoint.sh /sbin/entrypoint.sh
 
-EXPOSE 3128/tcp
 ENTRYPOINT ["/sbin/entrypoint.sh"]

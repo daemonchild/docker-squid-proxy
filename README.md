@@ -1,7 +1,8 @@
 # docker-squid-proxy
 ## Web Proxy for PenTesting
 
-This is a lightweight Squid based proxy for bouncing traffic, ideal for use during a pentest. It is based on Ubuntu 16:04, and is a 200Mb image.
+This is a lightweight Squid based proxy for bouncing traffic, ideal for use during a pentest. 
+It is based on Ubuntu and is a <400Mb image.
 
 You may wish to edit squid.conf to restrict to specific source and destination networks. The default configuration allow connections to RFC1918 addresses as shown here, but this comment can easily be removed to restrict access.
 
@@ -24,6 +25,15 @@ I have uploaded a prebuilt image to the Docker Hub using the configuration as pr
 ```
 docker pull daemonchild/docker-squid-proxy:latest
 ```
+
+Latest is version 1.2.
+
+### Versions
+| Version | Ubuntu Version | Size on Disk | Notes |
+|---|---|---|---|
+| 1.0 | 16.04 | 293MB | Does NOT allow to RFC1918 addresses |
+| 1.1 | 16.04 | 293MB | Does allow to RFC1918 addresses |
+| 1.2 | 24.04 | 386MB | Does allow to RFC1918 addresses |
 
 Image URL on Docker Hub: https://hub.docker.com/repository/docker/daemonchild/docker-squid-proxy/
 
